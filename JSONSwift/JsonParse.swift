@@ -17,11 +17,9 @@ func jsonParseAnyObject(jsonString: String) -> AnyObject? {
     switch jsonString[index] {
     case "[":
         var output: AnyObject? = arrayParser(jsonString,&index)
-        println("Array executed")
         return output
     case "{":
         var output: AnyObject? = objectParser(jsonString,&index)
-        println("Object executed")
         return output
     default:
         // Invalid file

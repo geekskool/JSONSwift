@@ -35,11 +35,14 @@ Copy "JsonParse.swift" file into your project. Or just import the framework. Tha
 Just call the method jsonParse with the jsonData string
 
 
-    if let data =  jsonParse(jsonData) as? [String: AnyObject],
+    if let data : [String: AnyObject] =  jsonParse(fileContent!),
         let monday = data["MONDAY"] as? [AnyObject]  {
-        for (course,_) in monday {
-            println(course)
-        }
+            for course in monday {
+                let courseObject = course as? [String: AnyObject]
+                if let title = course["TITLE"] as? String {
+                    println(title)
+                }
+            }
     }
 
     
@@ -66,14 +69,12 @@ Just call the method jsonParse with the jsonData string
 
 // Just call the method jsonParse with the jsonData string
     
-    var outputArray : Array =  jsonParse(jsonData)!
-
-// Retrieve nested object values
-
-    for nested in outputArray {
-        var what : Dictionary = (nested as? [String : AnyObject])!
-        for (_,description) in what {
-            println(description)
+    if let data : Array =  jsonParse(input) {
+        for nested in data {
+            var what = (nested as? [String : AnyObject])!
+            for (_,description) in what {
+                println(description)
+            }
         }
     }
 
@@ -106,15 +107,14 @@ Just call the method jsonParse with the jsonData string
 // Access tweets from Json returned by twitter API
 
 
-    var outDictionary : Dictionary =  jsonParse(fileContent!)!
-
-
-    if let statuses = outDictionary["statuses"] as? [AnyObject]{
-    for elem in statuses {
+    if let data : [String: AnyObject] = jsonParse(input) {
+        if let statuses = data["statuses"] as? [AnyObject]{
+        for elem in statuses {
 
         if let tweet = elem as? [String: AnyObject],
             let text : String = tweet["text"] as? String {
                 println(text)
+                }
             }
         }
     }
