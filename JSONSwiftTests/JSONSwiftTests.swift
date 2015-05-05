@@ -2,7 +2,7 @@
 //  JSONSwiftTests.swift
 //  JSONSwiftTests
 //
-//  Created by Ankit Goel on 04/05/15.
+//  Authored by Ankit Goel, Karthik Yelchuru
 //  Copyright (c) 2015 geekschool. All rights reserved.
 //
 
