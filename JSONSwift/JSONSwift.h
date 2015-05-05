@@ -3,7 +3,7 @@
 //  JSONSwift
 //
 //  Authored by Ankit Goel, Karthik Yelchuru
-//  Copyright (c) 2015 geekschool. All rights reserved.
+//  Copyright (c) 2015 geekskool. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
