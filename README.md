@@ -38,11 +38,10 @@ Just call the method jsonParse with the jsonData string
     if let data : [String: AnyObject] =  jsonParse(fileContent!),
         let monday = data["MONDAY"] as? [AnyObject]  {
             for course in monday {
-                let courseObject = course as? [String: AnyObject]
                 if let title = course["TITLE"] as? String {
-                    println(title)
-                }
+                println(title)
             }
+        }
     }
 
     
