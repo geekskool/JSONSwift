@@ -76,11 +76,12 @@ Just call the method jsonParse with the jsonData string
 
 Just call the method jsonParse with the jsonData string
     
-    if let data : Array =  jsonParse(input) {
-        for nested in data {
-            var what = (nested as? [String : AnyObject])!
-            for (_,description) in what {
+    if let data : Array =  jsonParse(input){
+    for object in data {
+        if let elem = object as? [String: AnyObject] {
+            for (_,description) in elem {
                 println(description)
+                }
             }
         }
     }
