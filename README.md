@@ -77,11 +77,10 @@ Just call the method jsonParse with the jsonData string
 Just call the method jsonParse with the jsonData string
     
     if let data : Array =  jsonParse(input){
-    for object in data {
-        if let elem = object as? [String: AnyObject] {
-            for (_,description) in elem {
-                println(description)
-                }
+        for object in data {
+            if let elem = object as? [String: AnyObject] {
+                println(elem["Name"]!)
+                println(elem["ID"]!)
             }
         }
     }
@@ -126,8 +125,6 @@ Access tweets from Json returned by twitter API
             }
         }
     }
-
-ENJOY!! You are a swift JSON parsing pro. xD
 
 ### Authors
 [Ankit Goel](https://github.com/ankit1ank)
