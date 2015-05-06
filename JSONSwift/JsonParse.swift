@@ -316,17 +316,18 @@ func commaParser(jsonString: String, inout index: String.Index) -> AnyObject? {
 //boolean parser
 func booleanParser(jsonString: String, inout index: String.Index) -> AnyObject? {
     let startingIndex: String.Index = index
-    if jsonString[index] == "t" || jsonString[index] == "f"{
-        index = advance(index, 4)
+        index = advance(index, 4, jsonString.endIndex)
         let trueString = jsonString[startingIndex..<index]
         if trueString == "true" {
             return true
         }
+    if index != jsonString.endIndex {
         index = index.successor()
         let falseString = jsonString[startingIndex..<index]
         if falseString  == "false" {
             return false
-        }}
+        }
+    }
     index = startingIndex
     return nil
 }
@@ -335,12 +336,11 @@ class NULL {}
 
 func nullParser(jsonString: String, inout index: String.Index) -> AnyObject? {
     let startingIndex: String.Index = index
-    if jsonString[index] == "n" || jsonString[index] == "N"{
-        index = advance(index, 4)
+        index = advance(index, 4, jsonString.endIndex)
         let nullString = jsonString[startingIndex..<index]
         if nullString == "null" || nullString == "NULL" {
             return NULL()
-        }}
+        }
     index = startingIndex
     return nil
 }
