@@ -114,8 +114,8 @@ Sample twitter data from twitter search API
 Access tweets from Json returned by twitter API
 
 
-    if let data : [String: AnyObject] = jsonParse(input) {
-        if let statuses = data["statuses"] as? [AnyObject]{
+    if let data : [String: AnyObject] = jsonParse(input), 
+        let statuses = data["statuses"] as? [AnyObject]{
         for elem in statuses {
 
         if let tweet = elem as? [String: AnyObject],
@@ -124,7 +124,7 @@ Access tweets from Json returned by twitter API
                 }
             }
         }
-    }
+    
 
 ### Authors
 [Ankit Goel](https://github.com/ankit1ank)
