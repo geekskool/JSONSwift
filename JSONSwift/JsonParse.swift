@@ -280,26 +280,37 @@ func stringParser(jsonString: String, inout index: String.Index) -> AnyObject? {
     if jsonString[index] == "\""{
         var s = 0
         index = index.successor()
-        let startingIndex: String.Index = index
+        let mutatedRange = index..<jsonString.endIndex
+        var localString = jsonString[mutatedRange]
+        let startingIndex = localString.startIndex
+        var localIndex  = startingIndex
         while index != jsonString.endIndex {
-            if jsonString[index] == "\\" {
+            if localString[localIndex] == "\\" {
                 index = index.successor()
+                localIndex = localIndex.successor()
                 s = 1
                 continue
             }
-            if s == 1 && jsonString[index] == "\""{
-                index = index.successor()
+            if s == 1 && localString[localIndex] == "/" {
+                localIndex = localIndex.predecessor()
+                localString.removeAtIndex(localIndex)
                 s = 0
                 continue
             }
-            else if jsonString[index] == "\""{
+            if s == 1 && localString[localIndex] == "\""{
+                index = index.successor()
+                localIndex = localIndex.successor()
+                s = 0
+                continue
+            }else if localString[localIndex] == "\""{
                 break
             }
             index = index.successor()
+            localIndex = localIndex.successor()
             s = 0
         }
-        let range = startingIndex..<index
-        let parsedString = jsonString[range]
+        let range = startingIndex..<localIndex
+        let parsedString = localString[range]
         index = index.successor()
         return parsedString
     }
