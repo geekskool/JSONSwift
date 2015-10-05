@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3216DF421BAB45FC00BD2CA9 /* JsonTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3216DF411BAB45FC00BD2CA9 /* JsonTest.swift */; settings = {ASSET_TAGS = (); }; };
 		323FEE6A1AF747C600A59A02 /* JSONSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 323FEE691AF747C600A59A02 /* JSONSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		323FEE701AF747C600A59A02 /* JSONSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323FEE641AF747C600A59A02 /* JSONSwift.framework */; };
 		323FEE771AF747C600A59A02 /* JSONSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323FEE761AF747C600A59A02 /* JSONSwiftTests.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3216DF411BAB45FC00BD2CA9 /* JsonTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonTest.swift; sourceTree = "<group>"; };
 		323FEE641AF747C600A59A02 /* JSONSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JSONSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		323FEE681AF747C600A59A02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		323FEE691AF747C600A59A02 /* JSONSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSONSwift.h; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				323FEE691AF747C600A59A02 /* JSONSwift.h */,
 				323FEE671AF747C600A59A02 /* Supporting Files */,
 				323FEE801AF7480900A59A02 /* JsonParse.swift */,
+				3216DF411BAB45FC00BD2CA9 /* JsonTest.swift */,
 			);
 			path = JSONSwift;
 			sourceTree = "<group>";
@@ -161,7 +164,9 @@
 		323FEE5B1AF747C600A59A02 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = geekschool;
 				TargetAttributes = {
 					323FEE631AF747C600A59A02 = {
@@ -213,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				323FEE811AF7480900A59A02 /* JsonParse.swift in Sources */,
+				3216DF421BAB45FC00BD2CA9 /* JsonTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,6 +263,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -335,6 +342,7 @@
 				INFOPLIST_FILE = JSONSwift/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "in.geekskool.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -352,6 +360,7 @@
 				INFOPLIST_FILE = JSONSwift/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "in.geekskool.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -370,6 +379,7 @@
 				);
 				INFOPLIST_FILE = JSONSwiftTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "in.geekschool.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -383,6 +393,7 @@
 				);
 				INFOPLIST_FILE = JSONSwiftTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "in.geekschool.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -406,6 +417,7 @@
 				323FEE7C1AF747C600A59A02 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		323FEE7D1AF747C600A59A02 /* Build configuration list for PBXNativeTarget "JSONSwiftTests" */ = {
 			isa = XCConfigurationList;
@@ -414,6 +426,7 @@
 				323FEE7F1AF747C600A59A02 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

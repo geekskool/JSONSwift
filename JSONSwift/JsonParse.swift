@@ -12,10 +12,10 @@ func jsonParseAnyObject(jsonString: String) -> AnyObject? {
     
     var index = jsonString.startIndex
     // Run space parser to remove beginning spaces
-    spaceParser(jsonString, &index)
-    if let output: AnyObject = arrayParser(jsonString,&index) {
+    spaceParser(jsonString, index: &index)
+    if let output: AnyObject = arrayParser(jsonString,index: &index) {
         return output
-    } else if let output: AnyObject = objectParser(jsonString,&index) {
+    } else if let output: AnyObject = objectParser(jsonString,index: &index) {
         return output
     }
     return nil
@@ -27,16 +27,16 @@ func objectParser(jsonString: String, inout index:String.Index) -> AnyObject? {
     if jsonString[index] == "{" {
         index = index.successor()
         while true{
-            if let returnedElem: AnyObject = keyParser(jsonString,&index){
+            if let returnedElem: AnyObject = keyParser(jsonString,index: &index){
                 let key = returnedElem as! String
-                spaceParser(jsonString, &index)
-                if let returnedElem: AnyObject = colonParser(jsonString, &index) {
-                    if let returnedElem: AnyObject = valueParser(jsonString, &index){
+                spaceParser(jsonString, index: &index)
+                if let _: AnyObject = colonParser(jsonString, index: &index) {
+                    if let returnedElem: AnyObject = valueParser(jsonString, index: &index){
                         let value:AnyObject = returnedElem
                         parsedArray[key] = value
                     }
-                    spaceParser(jsonString, &index)
-                    if let returnedElem = endOfSetParser(jsonString, &index) {
+                    spaceParser(jsonString, index: &index)
+                    if let _ = endOfSetParser(jsonString, index: &index) {
                         return parsedArray
                     }
                 }
@@ -45,8 +45,8 @@ func objectParser(jsonString: String, inout index:String.Index) -> AnyObject? {
                 }
             }
             else if jsonString[index] == "}" || isSpace(jsonString[index]){
-                spaceParser(jsonString, &index)
-                if let returnedElem = endOfSetParser(jsonString, &index) {
+                spaceParser(jsonString, index: &index)
+                if let _ = endOfSetParser(jsonString, index: &index) {
                     return parsedArray
                 }
                 else{
@@ -62,8 +62,8 @@ func objectParser(jsonString: String, inout index:String.Index) -> AnyObject? {
 }
 //function to check key value in an object
 func keyParser(jsonString: String, inout index: String.Index) -> AnyObject?{
-    spaceParser(jsonString, &index)
-    if let returnedElem: AnyObject = stringParser(jsonString, &index){
+    spaceParser(jsonString, index: &index)
+    if let returnedElem: AnyObject = stringParser(jsonString, index: &index){
         return returnedElem
     }
     return nil
@@ -79,11 +79,11 @@ func colonParser(jsonString: String, inout index: String.Index) -> AnyObject? {
 //function to check value in an object
 func valueParser(jsonString:String, inout index: String.Index) -> AnyObject? {
     var value: AnyObject
-    spaceParser(jsonString, &index)
-    if let returnedElem: AnyObject = elemParser(jsonString, &index){
+    spaceParser(jsonString, index: &index)
+    if let returnedElem: AnyObject = elemParser(jsonString, index: &index){
         value = returnedElem
-        spaceParser(jsonString, &index)
-        commaParser(jsonString, &index)
+        spaceParser(jsonString, index: &index)
+        commaParser(jsonString, index: &index)
         return value
     }
     return nil
@@ -102,12 +102,12 @@ func arrayParser(jsonString: String, inout index: String.Index) -> AnyObject? {
     if jsonString[index] == "[" {
         index  = index.successor()
         while true{
-            if let returnedElem: AnyObject = elemParser(jsonString, &index){
+            if let returnedElem: AnyObject = elemParser(jsonString, index: &index){
                 parsedArray.append(returnedElem)
-                spaceParser(jsonString, &index)
-                if let returnedElem: AnyObject = commaParser(jsonString, &index) {
+                spaceParser(jsonString, index: &index)
+                if let _: AnyObject = commaParser(jsonString, index: &index) {
                 }
-                else if let returnedElem = endOfArrayParser(jsonString, &index){
+                else if let _ = endOfArrayParser(jsonString, index: &index){
                     return parsedArray
                 }
                 else{
@@ -115,8 +115,8 @@ func arrayParser(jsonString: String, inout index: String.Index) -> AnyObject? {
                 }
             }
             else if jsonString[index] == "]" || isSpace(jsonString[index]){
-                spaceParser(jsonString, &index)
-                if let returnedElem = endOfArrayParser(jsonString, &index){
+                spaceParser(jsonString, index: &index)
+                if let _ = endOfArrayParser(jsonString, index: &index){
                     return parsedArray
                 }
                 else{
@@ -132,23 +132,23 @@ func arrayParser(jsonString: String, inout index: String.Index) -> AnyObject? {
 }
 //Parsing elements in Array
 func elemParser(jsonString:String, inout index: String.Index) -> AnyObject? {
-    spaceParser(jsonString, &index)
-    if let returnedElem: AnyObject = stringParser(jsonString, &index) {
+    spaceParser(jsonString, index: &index)
+    if let returnedElem: AnyObject = stringParser(jsonString, index: &index) {
         return returnedElem
     }
-    else if let returnedElem: AnyObject = numberParser(jsonString, &index) {
+    else if let returnedElem: AnyObject = numberParser(jsonString, index: &index) {
         return returnedElem
     }
-    else if let returnedElem: AnyObject = booleanParser(jsonString, &index) {
+    else if let returnedElem: AnyObject = booleanParser(jsonString, index: &index) {
         return returnedElem
     }
-    else if let returnedElem: AnyObject = arrayParser(jsonString, &index) {
+    else if let returnedElem: AnyObject = arrayParser(jsonString, index: &index) {
         return returnedElem
     }
-    else if let returnedElem: AnyObject = objectParser(jsonString, &index) {
+    else if let returnedElem: AnyObject = objectParser(jsonString, index: &index) {
         return returnedElem
     }
-    else if let returnedElem: AnyObject = nullParser(jsonString, &index) {
+    else if let returnedElem: AnyObject = nullParser(jsonString, index: &index) {
         return returnedElem
     }
     return nil
@@ -208,7 +208,7 @@ func numberParser(jsonString: String, inout index: String.Index) -> AnyObject? {
         index = index.successor()
     }
     
-    do {
+    repeat {
         if first == 0 && !isNumber(jsonString[index]){
             return nil
         }
@@ -229,7 +229,7 @@ func numberParser(jsonString: String, inout index: String.Index) -> AnyObject? {
             return nil
         }
         
-        do {
+        repeat {
             if first == 1 && !isNumber(jsonString[index]){
                 return nil
             }
@@ -254,7 +254,7 @@ func numberParser(jsonString: String, inout index: String.Index) -> AnyObject? {
         {
             index = index.successor()
         }
-        do {
+        repeat {
             if first == 0 && !isNumber(jsonString[index]){
                 return nil
             }
@@ -316,7 +316,7 @@ func commaParser(jsonString: String, inout index: String.Index) -> AnyObject? {
 //boolean parser
 func booleanParser(jsonString: String, inout index: String.Index) -> AnyObject? {
     let startingIndex: String.Index = index
-        index = advance(index, 4, jsonString.endIndex)
+        index = index.advancedBy(4, limit: jsonString.endIndex)
         let trueString = jsonString[startingIndex..<index]
         if trueString == "true" {
             return true
@@ -336,7 +336,7 @@ class NULL {}
 
 func nullParser(jsonString: String, inout index: String.Index) -> AnyObject? {
     let startingIndex: String.Index = index
-        index = advance(index, 4, jsonString.endIndex)
+        index = index.advancedBy(4, limit: jsonString.endIndex)
         let nullString = jsonString[startingIndex..<index]
         if nullString == "null" || nullString == "NULL" {
             return NULL()
